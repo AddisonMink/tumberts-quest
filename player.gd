@@ -12,7 +12,7 @@ enum Direction {
 	RIGHT
 }
 
-const SPEED = 0.3
+const SPEED = 250
 
 @onready var animated_sprite = $AnimatedSprite2D
 var state = State.IDLE
@@ -36,8 +36,10 @@ func _process(delta: float) -> void:
 				transition_to_idle()
 			elif dir != facing:
 				transition_to_walking(dir)
-			else:
-				move(facing)
+				
+func _physics_process(delta):
+	if state == State.WALKING:
+		move(facing, delta)		
 				
 func transition_to_idle():
 	set_animation("idle", facing)
@@ -63,7 +65,7 @@ func set_animation(type: String, dir: Direction) -> void:
 			animated_sprite.play(type + "_right")
 			animated_sprite.flip_h = false					
 			
-func move(dir: Direction) -> void:
+func move(dir: Direction, delta: float) -> void:
 	var dirVec = Vector2(0,0)
 	match dir:
 		Direction.UP:
@@ -74,7 +76,7 @@ func move(dir: Direction) -> void:
 			dirVec = Vector2(-1,0)
 		Direction.RIGHT:
 			dirVec = Vector2(1,0)
-	position += dirVec * SPEED			
+	position += dirVec * SPEED * delta
 
 func input_direction() -> Direction:	
 	if Input.is_action_pressed("down"):
