@@ -5,7 +5,7 @@ enum State {
 	WALKING
 }
 
-enum Direction {
+enum Facing {
 	UP,
 	DOWN,
 	LEFT,
@@ -15,75 +15,80 @@ enum Direction {
 const SPEED = 250
 
 @onready var animated_sprite = $AnimatedSprite2D
+var facing = Facing.DOWN
+var dir = Vector2(0,0)
 var state = State.IDLE
-var facing = Direction.DOWN
-
 
 func _ready() -> void:
-	facing = Direction.DOWN
+	facing = Facing.DOWN
 	transition_to_idle()	
 
 func _process(delta: float) -> void:
 	match state:
 		State.IDLE:
-			var dir = input_direction()
-			if dir != -1:
-				transition_to_walking(dir)
+			var new_dir = input_vector()		
+			if not new_dir.is_zero_approx():
+				transition_to_walking(new_dir)
 		State.WALKING:
-			var dir = input_direction()
-			if dir == -1:
+			var new_dir = input_vector()			
+			if new_dir.is_zero_approx():
 				transition_to_idle()
-			elif dir != facing:
-				transition_to_walking(dir)
+			else:				
+				transition_to_walking(new_dir)
 				
 func _physics_process(delta):
-	if state == State.WALKING:
-		move_and_collide(move_velocity(facing,delta))
+	var vel = dir * SPEED * delta		
+	move_and_collide(vel)
 				
 func transition_to_idle():
 	set_animation("idle", facing)
+	dir = Vector2.ZERO
 	state = State.IDLE
 			
-func transition_to_walking(dir: Direction):
-	set_animation("walk", dir)
-	facing = dir
+func transition_to_walking(new_dir: Vector2):
+	if state == State.IDLE or vector_is_cardinal(new_dir):
+		facing = vector_facing(new_dir)	
+		set_animation("walk", facing)
+	dir = new_dir
 	state = State.WALKING
 	
-func set_animation(type: String, dir: Direction) -> void:
+func set_animation(type: String, dir: Facing) -> void:
 	match dir:
-		Direction.UP:
+		Facing.UP:
 			animated_sprite.play(type + "_up")			
 			animated_sprite.flip_h = false
-		Direction.DOWN:
+		Facing.DOWN:
 			animated_sprite.play(type + "_down")
 			animated_sprite.flip_h = false
-		Direction.LEFT:			
+		Facing.LEFT:			
 			animated_sprite.flip_h = true
 			animated_sprite.play(type + "_right")			
-		Direction.RIGHT:
+		Facing.RIGHT:
 			animated_sprite.play(type + "_right")
 			animated_sprite.flip_h = false					
-			
-func move_velocity(dir: Direction, delta: float) -> Vector2:
-	var dirVec = Vector2(0,0)
-	match dir:
-		Direction.UP:
-			dirVec = Vector2(0,-1)
-		Direction.DOWN:
-			dirVec = Vector2(0,1)
-		Direction.LEFT:
-			dirVec = Vector2(-1,0)
-		Direction.RIGHT:
-			dirVec = Vector2(1,0)
-	return dirVec * SPEED * delta
-
-func input_direction() -> Direction:	
+	
+func input_vector() -> Vector2:
+	var dir = Vector2(0, 0)
 	if Input.is_action_pressed("down"):
-		return Direction.DOWN
+		dir.y += 1
 	if Input.is_action_pressed("up"):
-		return Direction.UP
+		dir.y -= 1
 	if Input.is_action_pressed("left"):		
-		return Direction.LEFT
+		dir.x -= 1
 	if Input.is_action_pressed("right"):
-		return Direction.RIGHT	
+		dir.x += 1
+	return dir.normalized()
+	
+func vector_facing(dir: Vector2) -> Facing:
+	if dir.x != 0 && dir.y == 0:
+		return Facing.RIGHT if dir.x > 0 else Facing.LEFT
+	if dir.x == 0 && dir.y != 0:
+		return Facing.DOWN if dir.y > 0 else Facing.UP
+	if dir.x != 0 && dir.y != 0:
+		return Facing.DOWN if dir.y > 0 else Facing.UP
 	return -1
+	
+func vector_is_cardinal(dir: Vector2) -> bool:
+	return dir.x == 0 and dir.y != 0 or dir.x != 0 and dir.y == 0
+		
+	
