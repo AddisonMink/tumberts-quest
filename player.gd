@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 enum State {
 	IDLE,
@@ -20,7 +20,6 @@ var facing = Direction.DOWN
 
 
 func _ready() -> void:
-	position = Vector2(8,8)
 	facing = Direction.DOWN
 	transition_to_idle()	
 
@@ -39,7 +38,7 @@ func _process(delta: float) -> void:
 				
 func _physics_process(delta):
 	if state == State.WALKING:
-		move(facing, delta)		
+		move_and_collide(move_velocity(facing,delta))
 				
 func transition_to_idle():
 	set_animation("idle", facing)
@@ -65,7 +64,7 @@ func set_animation(type: String, dir: Direction) -> void:
 			animated_sprite.play(type + "_right")
 			animated_sprite.flip_h = false					
 			
-func move(dir: Direction, delta: float) -> void:
+func move_velocity(dir: Direction, delta: float) -> Vector2:
 	var dirVec = Vector2(0,0)
 	match dir:
 		Direction.UP:
@@ -76,7 +75,7 @@ func move(dir: Direction, delta: float) -> void:
 			dirVec = Vector2(-1,0)
 		Direction.RIGHT:
 			dirVec = Vector2(1,0)
-	position += dirVec * SPEED * delta
+	return dirVec * SPEED * delta
 
 func input_direction() -> Direction:	
 	if Input.is_action_pressed("down"):
