@@ -37,8 +37,8 @@ func _process(delta: float) -> void:
 				transition_to_walking(new_dir)
 				
 func _physics_process(delta):
-	var vel = dir * SPEED * delta		
-	move_and_collide(vel)
+	velocity = dir * SPEED			
+	move_and_slide()
 				
 func transition_to_idle():
 	set_animation("idle", facing)
