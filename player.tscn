@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://djuk41u18qta3"]
+[gd_scene load_steps=33 format=3 uid="uid://djuk41u18qta3"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_wgyws"]
 [ext_resource type="Texture2D" uid="uid://cetc6wba35sah" path="res://spritesheets/tumbert.png" id="2_f3yoj"]
@@ -17,6 +17,30 @@ region = Rect2(144, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6u4d"]
 atlas = ExtResource("2_f3yoj")
 region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b1gs"]
+atlas = ExtResource("2_f3yoj")
+region = Rect2(128, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvyxn"]
+atlas = ExtResource("2_f3yoj")
+region = Rect2(144, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj3ha"]
+atlas = ExtResource("2_f3yoj")
+region = Rect2(160, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqc4d"]
+atlas = ExtResource("2_f3yoj")
+region = Rect2(128, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdn0d"]
+atlas = ExtResource("2_f3yoj")
+region = Rect2(144, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_navb2"]
+atlas = ExtResource("2_f3yoj")
+region = Rect2(160, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g7acl"]
 atlas = ExtResource("2_f3yoj")
@@ -106,9 +130,37 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v6u4d")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_down",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b1gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvyxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj3ha")
+}],
+"loop": false,
+"name": &"attack_right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqc4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdn0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_navb2")
+}],
+"loop": false,
+"name": &"attack_up",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -214,4 +266,4 @@ shape = SubResource("RectangleShape2D_r6lc4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_4xbjx")
-animation = &"walk_left"
+animation = &"attack_up"
