@@ -34,14 +34,13 @@ animations = [{
 }]
 
 [node name="PlayerSword" type="Area2D"]
-position = Vector2(100, 100)
 script = ExtResource("1_eucj6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_byhrh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_ly04v")
 animation = &"down"

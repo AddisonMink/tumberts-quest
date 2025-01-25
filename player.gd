@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
+const SWORD_SCENE = preload("res://player_sword.tscn")
+
 enum State {
 	IDLE,
-	WALKING
+	WALKING,
+	ATTACKING,
 }
 
 enum Facing {
@@ -13,28 +16,37 @@ enum Facing {
 }
 
 const SPEED = 250
+const SWORD_OFFSET_RIGHT = Vector2(100, 22)
+const SWORD_OFFSET_DOWN = Vector2(0, 100)
 
 @onready var animated_sprite = $AnimatedSprite2D
 var facing = Facing.DOWN
 var dir = Vector2(0,0)
+var sword = null
 var state = State.IDLE
 
 func _ready() -> void:
-	facing = Facing.DOWN
+	facing = Facing.DOWN	
 	transition_to_idle()	
 
 func _process(delta: float) -> void:
 	match state:
-		State.IDLE:
+		State.IDLE:			
+			if Input.is_action_just_pressed("button1"):
+				transition_to_attacking()
 			var new_dir = input_vector()		
 			if not new_dir.is_zero_approx():
 				transition_to_walking(new_dir)
 		State.WALKING:
+			if Input.is_action_just_pressed("button1"):
+				transition_to_attacking()
 			var new_dir = input_vector()			
 			if new_dir.is_zero_approx():
 				transition_to_idle()
 			else:				
 				transition_to_walking(new_dir)
+		State.ATTACKING:
+			pass
 				
 func _physics_process(delta):
 	velocity = dir * SPEED			
@@ -51,6 +63,23 @@ func transition_to_walking(new_dir: Vector2):
 		set_animation("walk", facing)
 	dir = new_dir
 	state = State.WALKING
+	
+func transition_to_attacking():
+	var offset = Vector2.ZERO
+	match facing:
+		Facing.UP:
+			offset = SWORD_OFFSET_DOWN * Vector2(1, -1)
+		Facing.DOWN:
+			offset = SWORD_OFFSET_DOWN
+		Facing.LEFT:
+			offset = SWORD_OFFSET_RIGHT * Vector2(-1, 1)
+		Facing.RIGHT:
+			offset = SWORD_OFFSET_RIGHT
+	
+	sword = SWORD_SCENE.instantiate()	
+	add_child(sword)
+	sword.initialize(facing)	
+	sword.position = sword.position + offset
 	
 func set_animation(type: String, dir: Facing) -> void:
 	match dir:

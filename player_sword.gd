@@ -10,8 +10,9 @@ const BREADTH = 6
 const RIGHT_OFFSET = Vector2(-4, 0)
 const DOWN_OFFSET = Vector2(0, -4)
 
-func _ready():
-	initialize(Global.Facing.UP)
+func _ready() -> void:
+	if collision_shape.shape:
+		collision_shape.shape = collision_shape.shape.duplicate()		
 		
 func initialize(facing: Global.Facing) -> void:
 	match facing:

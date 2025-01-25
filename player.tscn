@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cetc6wba35sah" path="res://spritesheets/tumbert.png" id="2_f3yoj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6lc4"]
+size = Vector2(10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntd50"]
 atlas = ExtResource("2_f3yoj")
@@ -207,7 +208,7 @@ script = ExtResource("1_wgyws")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 24)
-scale = Vector2(4, 4)
+scale = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_r6lc4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
