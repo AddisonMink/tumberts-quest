@@ -15,6 +15,7 @@ const SWORD_OFFSET_RIGHT = Vector2(100, 22)
 const SWORD_OFFSET_DOWN = Vector2(0, 90)
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var attack_cooldown_timer = $AttackCooldownTimer
 
 var facing = Facing.Facing.DOWN
 var dir = Vector2(0,0)
@@ -27,14 +28,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	match state:
 		State.IDLE:			
-			if Input.is_action_just_pressed("button1"):
+			if can_attack():
 				transition_to_attacking()
 			else:
 				var new_dir = input_vector()		
 				if not new_dir.is_zero_approx():
 					transition_to_walking(new_dir)
 		State.WALKING:
-			if Input.is_action_just_pressed("button1"):
+			if can_attack():
 				transition_to_attacking()
 			else:
 				var new_dir = input_vector()			
@@ -51,6 +52,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta):
 	velocity = dir * SPEED			
 	move_and_slide()
+	
+func can_attack() -> bool:
+	return Input.is_action_just_pressed("button1") and attack_cooldown_timer.get_time_left() <= 0
 				
 func transition_to_idle():
 	Facing.play_animation_facing(animated_sprite, "idle", facing)
@@ -84,7 +88,8 @@ func transition_to_attacking():
 	Facing.play_animation_facing(animated_sprite, "attack", facing)
 	
 func transition_from_attacking() -> void:
-	sword.queue_free()				
+	sword.queue_free()		
+	attack_cooldown_timer.start()
 	
 func input_vector() -> Vector2:
 	var dir = Vector2(0, 0)
