@@ -33,6 +33,7 @@ static func vector_facing(dir: Vector2) -> Facing:
 ## @name - Root of animation name. Example: The name of animation "walk_left" is "walk".
 ## @facing 
 ## Assumes that animations are defined for "_up", "_right", and "_down".
+@warning_ignore("shadowed_variable_base_class")
 static func play_animation_facing(animated_sprite: AnimatedSprite2D, name: String, facing: Facing) -> void:
 	match facing:
 		Facing.UP:

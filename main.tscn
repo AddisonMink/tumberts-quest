@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://clh3fl7h1upyx"]
+[gd_scene load_steps=4 format=3 uid="uid://clh3fl7h1upyx"]
 
 [ext_resource type="PackedScene" uid="uid://djuk41u18qta3" path="res://player.tscn" id="1_0dk1m"]
 [ext_resource type="TileSet" uid="uid://bnlwde40xet8b" path="res://forest_tiles.tres" id="3_3rxfx"]
+[ext_resource type="PackedScene" uid="uid://2q86aatoq78y" path="res://characters/redcap.tscn" id="3_qn157"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,3 +13,6 @@ z_index = -1
 scale = Vector2(8, 8)
 tile_map_data = PackedByteArray(0, 0, 3, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0, 2, 0, 0, 0, 0, 0)
 tile_set = ExtResource("3_3rxfx")
+
+[node name="Redcap" parent="." instance=ExtResource("3_qn157")]
+position = Vector2(271, 219)
