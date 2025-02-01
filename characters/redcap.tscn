@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0yikofxunpoe"]
 
 [ext_resource type="SpriteFrames" uid="uid://pk4t4v8vk7eb" path="res://sprite_frames/redcap.tres" id="1_e86oi"]
+[ext_resource type="Script" path="res://characters/redcap.gd" id="1_uwg37"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="2_ayei8"]
 [ext_resource type="Script" path="res://components/health.gd" id="3_2pfym"]
-[ext_resource type="Script" path="res://components/creature_body.gd" id="4_hkgw3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_njqth"]
 size = Vector2(10, 10)
@@ -13,7 +13,8 @@ size = Vector2(10, 10)
 
 [node name="Redcap" type="CharacterBody2D"]
 scale = Vector2(8, 8)
-script = ExtResource("4_hkgw3")
+collision_layer = 4
+script = ExtResource("1_uwg37")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_e86oi")

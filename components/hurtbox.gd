@@ -10,5 +10,4 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D):	
 	health.apply_damage(1)
-	knockback.emit(1,Vector2.RIGHT)
-	print("emitted knockback")
+	knockback.emit(1, Vector2.RIGHT)

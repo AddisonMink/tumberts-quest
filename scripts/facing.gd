@@ -20,13 +20,20 @@ static func facing_vector(facing: Facing) -> Vector2:
 	return Vector2.ZERO
 
 ## Return the facing that corresponds to a vector.
-## @dir - input
+## @dir - direction_vector
 ## Edge Case: Disregards x-component of diagonal vectors.
-static func vector_facing(dir: Vector2) -> Facing:
+static func vector_facing(dir: Vector2) -> Facing:	
 	if dir.x != 0 && dir.y == 0:
 		return Facing.RIGHT if dir.x > 0 else Facing.LEFT
 	else:
 		return Facing.DOWN if dir.y > 0 else Facing.UP 
+		
+static func facing_to(from: Vector2, to: Vector2):
+	var diff = to - from
+	if abs(diff.y) >= abs(diff.x):
+		return Facing.DOWN if diff.y > 0 else Facing.UP
+	else:
+		return Facing.RIGHT if diff.x > 0 else Facing.LEFT
 		
 ## Play an animation with a given facing.
 ## @animated_sprite
