@@ -9,5 +9,9 @@ func _ready() -> void:
 	connect("area_entered", _on_area_entered)	
 
 func _on_area_entered(area: Area2D):	
-	health.apply_damage(1)
-	knockback.emit(1, Vector2.RIGHT)
+	var hitbox = area as Hitbox
+	if not hitbox:
+		return
+
+	health.apply_damage(hitbox.damage)
+	knockback.emit(hitbox.knockback_power, hitbox.dir)

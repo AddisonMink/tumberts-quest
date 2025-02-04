@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const Facing = preload("res://scripts/facing.gd")
 
-const SWORD_SCENE = preload("res://player_sword.tscn")
+const SWORD_SCENE = preload("res://characters/player_sword.tscn")
 
 enum State {
 	IDLE,
@@ -17,9 +17,9 @@ const SWORD_OFFSET_DOWN = Vector2(0, 90)
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var attack_cooldown_timer = $AttackCooldownTimer
 
-var facing = Facing.Facing.DOWN
-var dir = Vector2(0,0)
-var sword = null
+var facing: Facing.Facing = Facing.Facing.DOWN
+var dir: Vector2 = Vector2(0,0)
+var sword: Hitbox = null
 var state = State.IDLE
 
 func _ready() -> void:

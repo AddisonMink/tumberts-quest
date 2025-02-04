@@ -15,6 +15,7 @@ size = Vector2(10, 10)
 scale = Vector2(8, 8)
 collision_layer = 4
 script = ExtResource("1_uwg37")
+knockback_resist = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_e86oi")

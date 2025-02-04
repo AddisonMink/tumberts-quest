@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://clh3fl7h1upyx"]
 
-[ext_resource type="PackedScene" uid="uid://djuk41u18qta3" path="res://player.tscn" id="1_0dk1m"]
-[ext_resource type="TileSet" uid="uid://bnlwde40xet8b" path="res://forest_tiles.tres" id="3_3rxfx"]
+[ext_resource type="PackedScene" uid="uid://djuk41u18qta3" path="res://characters/player.tscn" id="1_0dk1m"]
+[ext_resource type="TileSet" uid="uid://bnlwde40xet8b" path="res://sprite_frames/forest_tiles.tres" id="3_3rxfx"]
 [ext_resource type="PackedScene" uid="uid://c0yikofxunpoe" path="res://characters/redcap.tscn" id="3_qn157"]
 
 [node name="Node2D" type="Node2D"]

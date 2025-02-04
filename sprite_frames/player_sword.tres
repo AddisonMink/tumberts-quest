@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://b1v6q8ih4yru0"]
+
+[ext_resource type="Texture2D" uid="uid://ddylbdfst76na" path="res://spritesheets/player-tools.png" id="1_w5dup"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7kdd"]
+atlas = ExtResource("1_w5dup")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_610qb"]
+atlas = ExtResource("1_w5dup")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7kdd")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_610qb")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
