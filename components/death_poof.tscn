@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnob4ux5t50xc"]
+
+[ext_resource type="Script" path="res://components/death_poof.gd" id="1_odrn0"]
+[ext_resource type="SpriteFrames" uid="uid://bh7ckomgx1haq" path="res://sprite_frames/effects.tres" id="2_4lgme"]
+
+[node name="DeathPoof" type="Node2D"]
+scale = Vector2(8, 8)
+script = ExtResource("1_odrn0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_4lgme")
+animation = &"poof"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

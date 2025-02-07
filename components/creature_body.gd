@@ -1,12 +1,15 @@
 class_name CreatureBody
 extends CharacterBody2D
 
+signal death(pos: Vector2)
+
 const KNOCKBACK_SPEED = 1000
 const KNOCKBACK_UNIT = 1.0 / 16.0
 
 @export var knockback_resist: int
 
 @onready var hurtbox: Hurtbox = $Hurtbox
+@onready var health: Health = $Health
 
 var knockback_timer: Timer = Timer.new()
 
@@ -15,6 +18,7 @@ func _ready():
 	add_child(knockback_timer)
 	hurtbox.knockback.connect(_on_knockback)
 	knockback_timer.timeout.connect(_on_knockback_done)
+	health.die.connect(_on_die)
 	
 func _physics_process(delta: float) -> void:
 	move_and_slide()
@@ -30,3 +34,7 @@ func _on_knockback(power: int, dir: Vector2) -> void:
 	
 func _on_knockback_done() -> void:
 	velocity = Vector2.ZERO
+	
+func _on_die() -> void:
+	death.emit(position)
+	queue_free()

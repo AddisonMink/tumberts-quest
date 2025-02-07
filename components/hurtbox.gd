@@ -1,8 +1,8 @@
 class_name Hurtbox
 extends Area2D
 
-const HIT_FLASH_DURATION = 0.15
-const INVINCIBILITY_DURATION = 1
+const HIT_FLASH_DURATION = 0.1
+const INVINCIBILITY_DURATION = 0.5
 
 signal knockback(power: int, dir: Vector2)
 
