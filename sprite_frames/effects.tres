@@ -1,39 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bh7ckomgx1haq"]
-
-[ext_resource type="Texture2D" uid="uid://cbf5k61kuvpas" path="res://spritesheets/effects.png" id="1_cjrvh"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c1p6v"]
-atlas = ExtResource("1_cjrvh")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jd8oa"]
-atlas = ExtResource("1_cjrvh")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wotse"]
-atlas = ExtResource("1_cjrvh")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ro8y4"]
-atlas = ExtResource("1_cjrvh")
-region = Rect2(48, 0, 16, 16)
+[gd_resource type="SpriteFrames" format=3 uid="uid://bh7ckomgx1haq"]
 
 [resource]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c1p6v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jd8oa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wotse")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ro8y4")
-}],
-"loop": false,
+"frames": [],
+"loop": true,
 "name": &"poof",
 "speed": 5.0
 }]

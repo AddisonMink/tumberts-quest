@@ -1,33 +1,24 @@
 class_name Blinker
 extends Node
 
-const BLINK_TIME = 0.1
+@export var blink_object: Node2D
 
-@onready var blink_timer: Timer = Timer.new()
-@onready var blink_duration_timer: Timer = Timer.new()
+func start_blinking() -> void:	
+	_blink_timer.start()	
+	
+func stop_blinking() -> void:
+	_blink_timer.stop()
+	blink_object.visible = true	
 
-var blink_object: Node2D
+const _BLINK_TIME = 0.1
 
-func start_blinking(object: Node2D, duration: float) -> void:	
-	blink_object = object
-	blink_timer.start()
-	blink_duration_timer.start(duration)
-
+@onready var _blink_timer: Timer = Timer.new()
+	
 func _ready():
-	blink_timer.autostart = false
-	blink_timer.wait_time = BLINK_TIME
-	blink_timer.timeout.connect(_on_blink)
-	add_child(blink_timer)
-		
-	blink_duration_timer.autostart = false
-	blink_duration_timer.one_shot = true
-	blink_duration_timer.timeout.connect(_on_blink_timeout)
-	add_child(blink_duration_timer)
+	_blink_timer.autostart = false
+	_blink_timer.wait_time = _BLINK_TIME
+	_blink_timer.timeout.connect(_on_blink)
+	add_child(_blink_timer)
 
 func _on_blink() -> void:	
 	blink_object.visible = !blink_object.visible
-	
-func _on_blink_timeout() -> void:
-
-	blink_timer.stop()
-	blink_object.visible = true	

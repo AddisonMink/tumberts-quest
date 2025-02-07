@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="2_ayei8"]
 [ext_resource type="Shader" path="res://characters/redcap.gdshader" id="2_hxplm"]
 [ext_resource type="Script" path="res://components/health.gd" id="3_2pfym"]
-[ext_resource type="Script" path="res://components/blinker.gd" id="6_q0ytj"]
+[ext_resource type="Script" path="res://components/blinker.gd" id="6_fl3uw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mt1p3"]
 shader = ExtResource("2_hxplm")
@@ -32,13 +32,10 @@ animation = &"attack_down"
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_njqth")
 
-[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health", "animated_sprite", "blinker")]
+[node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("2_ayei8")
-health = NodePath("../Health")
-animated_sprite = NodePath("../AnimatedSprite2D")
-blinker = NodePath("../Blinker")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 3)
@@ -48,5 +45,6 @@ shape = SubResource("RectangleShape2D_q67il")
 script = ExtResource("3_2pfym")
 health = 3
 
-[node name="Blinker" type="Node" parent="."]
-script = ExtResource("6_q0ytj")
+[node name="Blinker" type="Node" parent="." node_paths=PackedStringArray("blink_object")]
+script = ExtResource("6_fl3uw")
+blink_object = NodePath("..")

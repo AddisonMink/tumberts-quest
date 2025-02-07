@@ -1,4 +1,4 @@
-extends CreatureBody
+extends Creature
 
 const Facing = preload("res://scripts/facing.gd")
 
