@@ -5,7 +5,7 @@ signal death(pos: Vector2)
 
 @export var knockback_resist: int
 
-func isStunned() -> bool:
+func is_stunned() -> bool:
 	return not _knockback_timer.is_stopped()
 	
 const _KNOCKBACK_SPEED = 1000.0
@@ -56,3 +56,49 @@ func _on_invincibility_over() -> void:
 func _on_die() -> void:
 	death.emit(position)
 	queue_free()
+
+# Facing type and functions.
+## Represents a facing that corresponds to a cardinal direction.
+enum Facing {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}
+
+static func facing_vector(facing: Facing) -> Vector2:
+	match facing:
+		Facing.UP: return Vector2.UP
+		Facing.DOWN: return Vector2.DOWN
+		Facing.LEFT: return Vector2.LEFT
+		Facing.RIGHT: return Vector2.RIGHT
+	return Vector2.ZERO
+
+static func vector_facing(dir: Vector2) -> Facing:	
+	if dir.x != 0 && dir.y == 0:
+		return Facing.RIGHT if dir.x > 0 else Facing.LEFT
+	else:
+		return Facing.DOWN if dir.y > 0 else Facing.UP 
+		
+static func facing_to(from: Vector2, to: Vector2):
+	var diff = to - from
+	if abs(diff.y) >= abs(diff.x):
+		return Facing.DOWN if diff.y > 0 else Facing.UP
+	else:
+		return Facing.RIGHT if diff.x > 0 else Facing.LEFT
+		
+@warning_ignore("shadowed_variable_base_class")
+func play_animation_facing(name: String, facing: Facing) -> void:
+	match facing:
+		Facing.UP:
+			_animated_sprite.play(name + "_up")			
+			_animated_sprite.flip_h = false
+		Facing.DOWN:
+			_animated_sprite.play(name + "_down")
+			_animated_sprite.flip_h = false
+		Facing.LEFT:			
+			_animated_sprite.flip_h = true
+			_animated_sprite.play(name + "_right")			
+		Facing.RIGHT:
+			_animated_sprite.play(name + "_right")
+			_animated_sprite.flip_h = false		

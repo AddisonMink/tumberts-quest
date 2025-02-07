@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://dktdlgqp4fpqx"]
+
+[ext_resource type="Script" path="res://characters/tumbert.gd" id="1_6nmmx"]
+[ext_resource type="Shader" path="res://shaders/creature_shader.gdshader" id="2_n60w8"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="2_tjuuo"]
+[ext_resource type="SpriteFrames" uid="uid://opjjiyma6i25" path="res://sprite_frames/tumbert.tres" id="3_6qu2v"]
+[ext_resource type="Script" path="res://components/health.gd" id="3_34xdt"]
+[ext_resource type="Script" path="res://components/blinker.gd" id="4_mul0i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2nht"]
+shader = ExtResource("2_n60w8")
+shader_parameter/whiten = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3vxi"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o826i"]
+size = Vector2(10, 10)
+
+[node name="Tumbert" type="CharacterBody2D"]
+scale = Vector2(8, 8)
+collision_layer = 2
+script = ExtResource("1_6nmmx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_p2nht")
+sprite_frames = ExtResource("3_6qu2v")
+animation = &"attack_up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_k3vxi")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("2_tjuuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_o826i")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_34xdt")
+health = 10
+
+[node name="Blinker" type="Node" parent="."]
+script = ExtResource("4_mul0i")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="IdleCooldownTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="IdleCooldownTimer" type="Timer" parent="IdleCooldownTimer"]
+wait_time = 3.0
+one_shot = true
