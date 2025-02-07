@@ -6,6 +6,9 @@ const ATTACK_COOLDOWN_DURATION = 1
 const ATTACK_RANGE_TOLERANCE = 16
 const ATTACK_RANGE = 16 * 8
 const ATTACK_SPEED = 400
+const ATTACK_LENGTH = 14
+const ATTACK_BREADTH = 10
+const ATTACK_OFFSET = 5
 
 enum State {
 	IDLE,
@@ -16,6 +19,7 @@ enum State {
 
 @export var player: CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hitbox: RedcapHitbox = $RedcapHitbox
 
 var state: State = State.IDLE
 var facing: Facing = Facing.DOWN
@@ -27,6 +31,7 @@ func _ready() -> void:
 	super._ready()	
 	attack_windup_timer = make_timer(ATTACK_WINDUP_DURATION)
 	attack_cooldown_timer = make_timer(ATTACK_COOLDOWN_DURATION)
+	remove_child(hitbox)
 	transition_to_idle()
 
 func _process(_delta: float) -> void:
@@ -74,12 +79,15 @@ func update_attack_windup():
 		transition_to_attacking()
 		
 func transition_to_attacking():
+	hitbox.initialize(facing_vector(facing))
+	add_child(hitbox)
 	state = State.ATTACKING
 	velocity = facing_vector(facing) * ATTACK_SPEED
 	play_animation_facing("attack", facing)		
 	
 func update_attacking():
 	if animated_sprite.frame_progress >= 1:
+		remove_child(hitbox)
 		attack_cooldown_timer.start()
 		transition_to_idle()	
 
