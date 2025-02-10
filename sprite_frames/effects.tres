@@ -1,9 +1,77 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://bh7ckomgx1haq"]
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://bh7ckomgx1haq"]
+
+[ext_resource type="Texture2D" uid="uid://cbf5k61kuvpas" path="res://spritesheets/effects.png" id="1_fqany"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwws0"]
+atlas = ExtResource("1_fqany")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8nyk"]
+atlas = ExtResource("1_fqany")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfv3p"]
+atlas = ExtResource("1_fqany")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6dr5"]
+atlas = ExtResource("1_fqany")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i87bd"]
+atlas = ExtResource("1_fqany")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nnkl"]
+atlas = ExtResource("1_fqany")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqxgk"]
+atlas = ExtResource("1_fqany")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swctq"]
+atlas = ExtResource("1_fqany")
+region = Rect2(48, 0, 16, 16)
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwws0")
+}],
 "loop": true,
-"name": &"poof",
+"name": &"bullet",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8nyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfv3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6dr5")
+}],
+"loop": false,
+"name": &"bullet_ping",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i87bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nnkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqxgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swctq")
+}],
+"loop": false,
+"name": &"poof",
+"speed": 10.0
 }]

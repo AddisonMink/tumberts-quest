@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dktdlgqp4fpqx"]
 
-[ext_resource type="Script" path="res://characters/tumbert.gd" id="1_6nmmx"]
+[ext_resource type="Script" path="res://characters/tumbert/tumbert.gd" id="1_6nmmx"]
 [ext_resource type="Shader" path="res://shaders/creature_shader.gdshader" id="2_n60w8"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="2_tjuuo"]
 [ext_resource type="SpriteFrames" uid="uid://opjjiyma6i25" path="res://sprite_frames/tumbert.tres" id="3_6qu2v"]
@@ -17,7 +17,7 @@ size = Vector2(10, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o826i"]
 size = Vector2(10, 10)
 
-[node name="Tumbert" type="CharacterBody2D"]
+[node name="Tumbert" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(8, 8)
 collision_layer = 2
 script = ExtResource("1_6nmmx")

@@ -6,7 +6,7 @@ enum State {
 	ATTACKING,
 } 
 
-const _SWORD_SCENE = preload("res://characters/player_sword.tscn")
+const _SWORD_SCENE = preload("res://characters/tumbert/player_sword.tscn")
 const _WALK_SPEED = 250
 const _SWORD_OFFSET_RIGHT = Vector2(100, 22) / 8
 const _SWORD_OFFSET_DOWN = Vector2(0, 90) / 8
@@ -14,7 +14,7 @@ const _SWORD_OFFSET_DOWN = Vector2(0, 90) / 8
 @onready var _attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var _idle_cooldown_timer: Timer = $IdleCooldownTimer
 
-var _facing: Facing = Facing.DOWN
+var _facing: Facing.Facing = Facing.Facing.DOWN
 var _dir: Vector2 = Vector2(0,0)
 var _sword: Hitbox = null
 var _state = State.IDLE
@@ -59,7 +59,7 @@ func _update_idle():
 	
 func _transition_to_walking(new_dir: Vector2):
 	if _state == State.IDLE or _vector_is_cardinal(new_dir):
-		_facing = vector_facing(new_dir)	
+		_facing = Facing.vector_facing(new_dir)	
 		play_animation_facing("walk", _facing)
 	_dir = new_dir
 	_state = State.WALKING
@@ -77,9 +77,9 @@ func _update_walking():
 			
 func _transition_to_attacking():
 	var offset = (
-		_SWORD_OFFSET_DOWN if _facing == Facing.DOWN
-		else _SWORD_OFFSET_DOWN * Vector2(1, -1) if _facing == Facing.UP
-		else _SWORD_OFFSET_RIGHT if _facing == Facing.RIGHT
+		_SWORD_OFFSET_DOWN if _facing == Facing.Facing.DOWN
+		else _SWORD_OFFSET_DOWN * Vector2(1, -1) if _facing == Facing.Facing.UP
+		else _SWORD_OFFSET_RIGHT if _facing == Facing.Facing.RIGHT
 		else _SWORD_OFFSET_RIGHT * Vector2(-1, 1)
 	)
 	

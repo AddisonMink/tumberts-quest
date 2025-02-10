@@ -1,8 +1,8 @@
 extends Creature
 
 const WALK_SPEED = 200
-const ATTACK_WINDUP_DURATION = 0.25
-const ATTACK_COOLDOWN_DURATION = 1
+const ATTACK_WINDUP_DURATION = 0.5
+const ATTACK_COOLDOWN_DURATION = 0.5
 const ATTACK_RANGE_TOLERANCE = 16
 const ATTACK_RANGE = 16 * 8
 const ATTACK_SPEED = 400
@@ -17,14 +17,15 @@ enum State {
 	ATTACKING,
 } 
 
-@export var player: CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: RedcapHitbox = $RedcapHitbox
+@onready var player: Node2D = find_tumbert()
 
 var state: State = State.IDLE
-var facing: Facing = Facing.DOWN
+var facing: Facing.Facing = Facing.Facing.DOWN
 var attack_windup_timer: Timer = null
 var attack_cooldown_timer: Timer = null
+
 
 
 func _ready() -> void:
@@ -58,8 +59,8 @@ func transition_to_walking():
 	update_walking()
 	
 func update_walking():	
-	facing = facing_to(position, player.position)
-	var target = facing_vector(facing) * -1 * ATTACK_RANGE + player.position			
+	facing = Facing.facing_to(position, player.position)
+	var target = Facing.facing_vector(facing) * -1 * ATTACK_RANGE + player.position			
 	var diff_to_target = target - position
 	
 	if attack_cooldown_timer.get_time_left() <= 0 and diff_to_target.length() <= ATTACK_RANGE_TOLERANCE:
@@ -79,10 +80,10 @@ func update_attack_windup():
 		transition_to_attacking()
 		
 func transition_to_attacking():
-	hitbox.initialize(facing_vector(facing))
+	hitbox.initialize(Facing.facing_vector(facing))
 	add_child(hitbox)
 	state = State.ATTACKING
-	velocity = facing_vector(facing) * ATTACK_SPEED
+	velocity = Facing.facing_vector(facing) * ATTACK_SPEED
 	play_animation_facing("attack", facing)		
 	
 func update_attacking():

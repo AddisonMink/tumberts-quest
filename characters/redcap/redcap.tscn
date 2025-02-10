@@ -1,14 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://c0yikofxunpoe"]
 
 [ext_resource type="SpriteFrames" uid="uid://pk4t4v8vk7eb" path="res://sprite_frames/redcap.tres" id="1_e86oi"]
-[ext_resource type="Script" path="res://characters/redcap.gd" id="1_uwg37"]
+[ext_resource type="Script" path="res://characters/redcap/redcap.gd" id="1_uwg37"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="2_ayei8"]
 [ext_resource type="Shader" path="res://shaders/creature_shader.gdshader" id="2_kgrab"]
 [ext_resource type="Script" path="res://components/health.gd" id="3_2pfym"]
 [ext_resource type="Script" path="res://components/blinker.gd" id="6_fl3uw"]
-[ext_resource type="Script" path="res://characters/redcap_hitbox.gd" id="7_3lu38"]
+[ext_resource type="Script" path="res://characters/redcap/redcap_hitbox.gd" id="7_3lu38"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mt1p3"]
+resource_local_to_scene = true
 shader = ExtResource("2_kgrab")
 shader_parameter/whiten = false
 
@@ -19,6 +20,7 @@ size = Vector2(10, 10)
 size = Vector2(10, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsram"]
+resource_local_to_scene = true
 size = Vector2(10, 14)
 
 [node name="Redcap" type="CharacterBody2D"]

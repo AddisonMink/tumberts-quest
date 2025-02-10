@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3tuvbhwjh4np"]
+
+[ext_resource type="Script" path="res://components/game_screen.gd" id="1_ubnm4"]
+[ext_resource type="PackedScene" uid="uid://dktdlgqp4fpqx" path="res://characters/tumbert/tumbert.tscn" id="2_e8vpu"]
+[ext_resource type="PackedScene" uid="uid://bjiew186wwkpu" path="res://characters/scamp/scamp.tscn" id="3_jo1th"]
+[ext_resource type="TileSet" uid="uid://bnlwde40xet8b" path="res://sprite_frames/forest_tiles.tres" id="4_m8eno"]
+
+[node name="TestScreen" type="Node"]
+script = ExtResource("1_ubnm4")
+
+[node name="Tumbert" parent="." instance=ExtResource("2_e8vpu")]
+position = Vector2(280, 266)
+
+[node name="Scamp" parent="." instance=ExtResource("3_jo1th")]
+position = Vector2(839, 249)
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(8, 8)
+tile_set = ExtResource("4_m8eno")
+format = 2
+layer_0/tile_data = PackedInt32Array(131076, 131073, 0, 196612, 65537, 0, 8, 131073, 0, 65544, 131073, 0, 131080, 131073, 0, 196616, 131073, 0, 262152, 131073, 0)

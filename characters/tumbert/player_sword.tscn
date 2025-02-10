@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://pp4i161vhmo3"]
 
-[ext_resource type="Script" path="res://characters/player_sword.gd" id="1_eucj6"]
+[ext_resource type="Script" path="res://characters/tumbert/player_sword.gd" id="1_eucj6"]
 [ext_resource type="SpriteFrames" uid="uid://b1v6q8ih4yru0" path="res://sprite_frames/player_sword.tres" id="2_mp3yw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_byhrh"]

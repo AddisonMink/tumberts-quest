@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjiew186wwkpu"]
+
+[ext_resource type="Script" path="res://characters/scamp/scamp.gd" id="1_rneqx"]
+[ext_resource type="SpriteFrames" uid="uid://dw7kytsi0pup2" path="res://sprite_frames/scamp.tres" id="2_27nxb"]
+[ext_resource type="Shader" path="res://shaders/creature_shader.gdshader" id="2_40ki4"]
+[ext_resource type="Script" path="res://components/hurtbox.gd" id="2_ip1ur"]
+[ext_resource type="Script" path="res://components/health.gd" id="3_2n6si"]
+[ext_resource type="Script" path="res://components/blinker.gd" id="4_nsv8r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_le3gg"]
+shader = ExtResource("2_40ki4")
+shader_parameter/whiten = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78wb2"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2bye"]
+size = Vector2(10, 10)
+
+[node name="Scamp" type="CharacterBody2D"]
+scale = Vector2(8, 8)
+collision_layer = 4
+script = ExtResource("1_rneqx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_le3gg")
+sprite_frames = ExtResource("2_27nxb")
+animation = &"attack_windup_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_78wb2")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_ip1ur")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_n2bye")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_2n6si")
+health = 2
+
+[node name="Blinker" type="Node" parent="." node_paths=PackedStringArray("blink_object")]
+script = ExtResource("4_nsv8r")
+blink_object = NodePath("..")
+
+[node name="AttackWindupTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.125
+one_shot = true
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
