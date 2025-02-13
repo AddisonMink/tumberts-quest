@@ -48,11 +48,12 @@ func _transition_to_idle() -> void:
 	_state = State.IDLE
 	
 func _update_idle() -> void:
-	if _attack_cooldown_timer.time_left <= 0 and _alignment_vector().length() < _ALIGN_TOLERANCE:
-		_transition_to_attack_windup()
+	if _alignment_vector().length() < _ALIGN_TOLERANCE:
+		if _attack_cooldown_timer.time_left <= 0:
+			_transition_to_attack_windup()
 	elif _player and (_player.position - position).length() < _FLEE_DISTANCE:
 		_transition_to_fleeing()
-	else:
+	else:		
 		_transition_to_aligning()
 	
 func _transition_to_aligning() -> void:
@@ -61,7 +62,7 @@ func _transition_to_aligning() -> void:
 	
 func _update_aligning() -> void:
 	var vec = _alignment_vector()
-	if vec.length() < _ALIGN_TOLERANCE:
+	if vec.length() < _ALIGN_TOLERANCE:		
 		_transition_to_idle()
 	else:
 		velocity = vec.normalized() * _ALIGN_SPEED
