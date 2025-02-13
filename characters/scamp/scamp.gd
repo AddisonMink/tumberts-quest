@@ -12,7 +12,7 @@ enum State {
 
 const _ALIGN_SPEED = 200
 const _ALIGN_TOLERANCE = 10
-const _FLEE_DISTANCE = 200
+const _FLEE_DISTANCE = 400
 
 @onready var _attack_windup_timer: Timer = $AttackWindupTimer
 @onready var _attack_timer: Timer = $AttackTimer
@@ -48,12 +48,12 @@ func _transition_to_idle() -> void:
 	_state = State.IDLE
 	
 func _update_idle() -> void:
-	if _alignment_vector().length() < _ALIGN_TOLERANCE:
-		if _attack_cooldown_timer.time_left <= 0:
-			_transition_to_attack_windup()
+	var vec = _alignment_vector()
+	if vec.length() < _ALIGN_TOLERANCE and _attack_cooldown_timer.time_left <= 0:		
+		_transition_to_attack_windup()	
 	elif _player and (_player.position - position).length() < _FLEE_DISTANCE:
 		_transition_to_fleeing()
-	else:		
+	elif vec.length() > _ALIGN_TOLERANCE:
 		_transition_to_aligning()
 	
 func _transition_to_aligning() -> void:
@@ -96,16 +96,15 @@ func _transition_to_fleeing() -> void:
 	_update_fleeing()
 	
 func _update_fleeing() -> void:
+	var vec = _alignment_vector()
 	var diff = position - _player.position
-	if diff.length() > _FLEE_DISTANCE:
+	if diff.length() > _FLEE_DISTANCE or vec.length() < _ALIGN_TOLERANCE and _attack_cooldown_timer.time_left <= 0:
 		_transition_to_idle()
 	else:
 		_facing = Facing.facing_to(_player.position, position)
 		play_animation_facing("walk", _facing)
 		velocity = diff.normalized() * _ALIGN_SPEED
 		
-		
-
 #################################################################
 ## UTIL														  ##
 #################################################################

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://clh3fl7h1upyx"]
 
-[ext_resource type="TileSet" uid="uid://bnlwde40xet8b" path="res://sprite_frames/forest_tiles.tres" id="3_3rxfx"]
+[ext_resource type="TileSet" uid="uid://bnlwde40xet8b" path="res://tile_maps/forest_terrain.tres" id="3_3rxfx"]
 [ext_resource type="PackedScene" uid="uid://c0yikofxunpoe" path="res://characters/redcap/redcap.tscn" id="3_qn157"]
 [ext_resource type="PackedScene" uid="uid://dktdlgqp4fpqx" path="res://characters/tumbert/tumbert.tscn" id="3_vqcnf"]
 
