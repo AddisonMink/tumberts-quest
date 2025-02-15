@@ -19,6 +19,12 @@ var _dir: Vector2 = Vector2(0,0)
 var _sword: Hitbox = null
 var _state = State.IDLE
 
+func get_current_health() -> int:
+	return _health.health
+	
+func get_max_health() -> int:
+	return _health.max_health
+
 func _ready() -> void:
 	super._ready()
 	_transition_to_idle()

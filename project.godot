@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [display]
 
 window/size/viewport_width=1408
-window/size/viewport_height=1024
+window/size/viewport_height=1152
 
 [global_group]
 
@@ -64,4 +64,4 @@ button1={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.176419, 0.176419, 0.176419, 1)
+environment/defaults/default_clear_color=Color(0.960784, 0.960784, 0.960784, 1)

@@ -2,8 +2,7 @@ class_name Creature
 extends CharacterBody2D
 
 const Facing = preload("res://scripts/facing.gd")
-
-signal death(pos: Vector2)
+const _DEATH_POOF_SCENE = preload("res://characters/death_poof/death_poof.tscn")
 
 @export var knockback_resist: int
 
@@ -56,7 +55,9 @@ func _on_invincibility_over() -> void:
 	_blinker.stop_blinking()	
 	
 func _on_die() -> void:
-	death.emit(position)
+	var death_poof = _DEATH_POOF_SCENE.instantiate()
+	get_parent().add_child(death_poof)
+	death_poof.initialize(position)
 	queue_free()
 	
 func find_tumbert() -> Node2D:

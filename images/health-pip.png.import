@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2dt5liqjhsqt"
-path="res://.godot/imported/scamp.png-6973038c47068159bdaff22869492e68.ctex"
+uid="uid://bmq1fg3b1lcfa"
+path="res://.godot/imported/health-pip.png-edadede85469eb6b9a53bbc6a99be9bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/scamp.png"
-dest_files=["res://.godot/imported/scamp.png-6973038c47068159bdaff22869492e68.ctex"]
+source_file="res://images/health-pip.png"
+dest_files=["res://.godot/imported/health-pip.png-edadede85469eb6b9a53bbc6a99be9bf.ctex"]
 
 [params]
 

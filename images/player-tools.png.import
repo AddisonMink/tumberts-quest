@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cetc6wba35sah"
-path="res://.godot/imported/tumbert.png-30e0576fe7aab9d02ac6dc8e5106e4a7.ctex"
+uid="uid://ddylbdfst76na"
+path="res://.godot/imported/player-tools.png-0fad5865668824250f2e32a55db4147e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/tumbert.png"
-dest_files=["res://.godot/imported/tumbert.png-30e0576fe7aab9d02ac6dc8e5106e4a7.ctex"]
+source_file="res://images/player-tools.png"
+dest_files=["res://.godot/imported/player-tools.png-0fad5865668824250f2e32a55db4147e.ctex"]
 
 [params]
 

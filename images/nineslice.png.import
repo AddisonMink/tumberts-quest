@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddylbdfst76na"
-path="res://.godot/imported/player-tools.png-a38cf67c7175b4da51ae011270d537cf.ctex"
+uid="uid://v23ewijmh4qc"
+path="res://.godot/imported/nineslice.png-14aea1f995f617f8a93f3bcf7c595bc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/player-tools.png"
-dest_files=["res://.godot/imported/player-tools.png-a38cf67c7175b4da51ae011270d537cf.ctex"]
+source_file="res://images/nineslice.png"
+dest_files=["res://.godot/imported/nineslice.png-14aea1f995f617f8a93f3bcf7c595bc1.ctex"]
 
 [params]
 

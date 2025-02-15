@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b31wcvuo36rk2"
-path="res://.godot/imported/redcap.png-adca6e6a123154f8a47c9de656ffb109.ctex"
+uid="uid://cetc6wba35sah"
+path="res://.godot/imported/tumbert.png-da33f69f5ed6a9712e846769fd8a35a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheets/redcap.png"
-dest_files=["res://.godot/imported/redcap.png-adca6e6a123154f8a47c9de656ffb109.ctex"]
+source_file="res://images/tumbert.png"
+dest_files=["res://.godot/imported/tumbert.png-da33f69f5ed6a9712e846769fd8a35a1.ctex"]
 
 [params]
 
