@@ -43,7 +43,7 @@ func _direction_vector(pos: Vector2) -> Vector2i:
 	)
 	
 	var dy = (
-		-1 if pos.y <= global_position.y
+		-1 if pos.y <= global_position.y + 128.0
 		else 1 if (pos.y - global_position.y) > _shape.size.y
 		else 0
 	)		

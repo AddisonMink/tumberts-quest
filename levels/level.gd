@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var _tumbert = $Tumbert
 @onready var _camera = $Camera2D
 @onready var _screen_transition_animation_player = $Camera2D/ScreenTransitionAnimationPlayer
 @onready var _hud = $Camera2D/HUD
@@ -21,6 +22,8 @@ func _on_screen_transition(coord: Vector2i, dir: Vector2i, size: Vector2) -> voi
 	await  _screen_transition_animation_player.animation_finished
 	
 	_camera.position = new_screen.position
+	if dir.y != 0:
+		_tumbert.position += Vector2(dir) * 128.0
 	
 	_screen_transition_animation_player.play("fade_in")
 	await  _screen_transition_animation_player.animation_finished

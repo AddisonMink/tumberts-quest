@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://screen/screen.gd" id="2_7ysjx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iioyd"]
-size = Vector2(1408, 1152)
+size = Vector2(1408, 1024)
 
 [node name="Screen" type="Area2D"]
 collision_layer = 16
@@ -12,7 +12,7 @@ collision_mask = 2
 script = ExtResource("2_7ysjx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(704, 576)
+position = Vector2(704, 640)
 shape = SubResource("RectangleShape2D_iioyd")
 
 [node name="Terrain" type="TileMapLayer" parent="."]
