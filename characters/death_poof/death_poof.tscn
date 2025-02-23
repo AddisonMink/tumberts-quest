@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://characters/death_poof/death_poof.gd" id="1_p5thj"]
 [ext_resource type="SpriteFrames" uid="uid://bh7ckomgx1haq" path="res://sprite_frames/effects.tres" id="2_cp0ig"]
 
-[node name="DeathPoof" type="Node2D"]
+[node name="DeathPoof" type="Node2D" groups=["npc"]]
 scale = Vector2(8, 8)
 script = ExtResource("1_p5thj")
 

@@ -11,8 +11,12 @@ var _active = true
 func _ready() -> void:
 	connect("area_entered", _on_area_entered)		
 
-func _on_area_entered(hitbox: Hitbox):		
+func _on_area_entered(area: Area2D):		
 	if not _active:
+		return
+	
+	var hitbox = area as Hitbox
+	if not hitbox:
 		return
 		
 	_active = false

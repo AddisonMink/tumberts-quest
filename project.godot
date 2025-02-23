@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="tumberts-quest"
-run/main_scene="res://main.tscn"
+run/main_scene="res://screen/screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,8 @@ window/size/viewport_height=1152
 [global_group]
 
 player=""
+npc=""
+persistent=""
 
 [input]
 
@@ -58,6 +60,7 @@ button1={
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="projectile"
+2d_physics/layer_5="Screen Boundary"
 
 [rendering]
 

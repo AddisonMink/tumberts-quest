@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://clh3fl7h1upyx"]
+
+[ext_resource type="TileSet" uid="uid://bnlwde40xet8b" path="res://tile_sets/forest_terrain.tres" id="1_euhe7"]
+[ext_resource type="Script" path="res://screen/screen.gd" id="2_7ysjx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iioyd"]
+size = Vector2(1408, 1152)
+
+[node name="Screen" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("2_7ysjx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(704, 576)
+shape = SubResource("RectangleShape2D_iioyd")
+
+[node name="Terrain" type="TileMapLayer" parent="."]
+z_index = -2
+scale = Vector2(8, 8)
+tile_set = ExtResource("1_euhe7")
+
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

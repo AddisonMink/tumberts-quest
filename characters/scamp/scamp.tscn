@@ -17,7 +17,7 @@ size = Vector2(10, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2bye"]
 size = Vector2(10, 10)
 
-[node name="Scamp" type="CharacterBody2D"]
+[node name="Scamp" type="CharacterBody2D" groups=["npc", "persistent"]]
 scale = Vector2(8, 8)
 collision_layer = 4
 script = ExtResource("1_rneqx")

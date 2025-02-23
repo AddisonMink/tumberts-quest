@@ -23,7 +23,7 @@ size = Vector2(10, 10)
 resource_local_to_scene = true
 size = Vector2(10, 14)
 
-[node name="Redcap" type="CharacterBody2D"]
+[node name="Redcap" type="CharacterBody2D" groups=["npc", "persistent"]]
 scale = Vector2(8, 8)
 collision_layer = 4
 script = ExtResource("1_uwg37")
@@ -50,6 +50,7 @@ shape = SubResource("RectangleShape2D_q67il")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_2pfym")
 health = 3
+max_health = 3
 
 [node name="Blinker" type="Node" parent="." node_paths=PackedStringArray("blink_object")]
 script = ExtResource("6_fl3uw")

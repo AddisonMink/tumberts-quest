@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bravmp2uw4kam"]
+
+[ext_resource type="PackedScene" uid="uid://rsg8142ve74m" path="res://levels/level.tscn" id="1_7qak2"]
+[ext_resource type="PackedScene" uid="uid://dir5be8teu6wq" path="res://levels/test/screen_0_0.tscn" id="2_lwy4b"]
+[ext_resource type="PackedScene" uid="uid://qs6l4gjow7qh" path="res://levels/test/screen_1_0.tscn" id="3_oe65r"]
+
+[node name="Level" instance=ExtResource("1_7qak2")]
+
+[node name="Screen 0,0" parent="." index="2" instance=ExtResource("2_lwy4b")]
+
+[node name="Screen 1,0" parent="." index="3" instance=ExtResource("3_oe65r")]
+position = Vector2(1410, 0)
+
+[connection signal="body_entered" from="Screen 0,0" to="Screen 0,0" method="_on_body_entered"]
+[connection signal="body_entered" from="Screen 1,0" to="Screen 1,0" method="_on_body_entered"]

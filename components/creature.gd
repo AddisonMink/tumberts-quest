@@ -17,7 +17,12 @@ const _HIT_FLASH_DURATION = 0.1
 @onready var _hurtbox: Hurtbox = $Hurtbox
 @onready var _health: Health = $Health
 @onready var _blinker: Blinker = $Blinker
+@onready var _original_position: Vector2 = position
 var _knockback_timer: Timer = Timer.new()
+
+func reset():
+	position = _original_position
+	_health.reset()
 
 func _ready():
 	_knockback_timer.one_shot = true

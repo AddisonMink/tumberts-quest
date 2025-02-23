@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://rsg8142ve74m"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_6y62q"]
+[ext_resource type="PackedScene" uid="uid://bf0we6m8qcrug" path="res://ui/hud.tscn" id="1_yvc8c"]
+[ext_resource type="PackedScene" uid="uid://dktdlgqp4fpqx" path="res://characters/tumbert/tumbert.tscn" id="2_evwnb"]
+
+[sub_resource type="Animation" id="Animation_in5bt"]
+resource_name = "fade_out"
+length = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a0ci3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ksa7"]
+resource_name = "fade_in"
+length = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6intg"]
+_data = {
+"RESET": SubResource("Animation_a0ci3"),
+"fade_in": SubResource("Animation_8ksa7"),
+"fade_out": SubResource("Animation_in5bt")
+}
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_6y62q")
+
+[node name="Tumbert" parent="." instance=ExtResource("2_evwnb")]
+position = Vector2(318, 335)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+offset_right = 1408.0
+offset_bottom = 1152.0
+color = Color(0, 0, 0, 1)
+
+[node name="HUD" parent="Camera2D" instance=ExtResource("1_yvc8c")]
+
+[node name="ScreenTransitionAnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_6intg")
+}

@@ -10,14 +10,14 @@ const _BREADTH = 10.0
 func _ready() -> void:
 	_rec = _collision_shape.shape as RectangleShape2D
 
-func initialize(dir: Vector2):
-	if dir.x > 0: 	# Right
+func initialize(d: Vector2):
+	if d.x > 0: 	# Right
 		_rec.size = Vector2(_LENGTH, _BREADTH)
 		_collision_shape.position = Vector2(2, 3)
-	elif dir.x < 0: # Left
+	elif d.x < 0: # Left
 		_rec.size = Vector2(_LENGTH, _BREADTH)
 		_collision_shape.position = Vector2(-2, 3)
-	elif dir.y > 0: # Down
+	elif d.y > 0: # Down
 		_rec.size = Vector2(_BREADTH, _LENGTH)
 		_collision_shape.position = Vector2(0, 5)
 	else:			# Up
