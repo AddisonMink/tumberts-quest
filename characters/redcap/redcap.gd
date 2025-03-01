@@ -26,8 +26,6 @@ var facing: Facing.Facing = Facing.Facing.DOWN
 var attack_windup_timer: Timer = null
 var attack_cooldown_timer: Timer = null
 
-
-
 func _ready() -> void:
 	super._ready()	
 	attack_windup_timer = make_timer(ATTACK_WINDUP_DURATION)
@@ -59,9 +57,9 @@ func transition_to_walking():
 	update_walking()
 	
 func update_walking():	
-	facing = Facing.facing_to(position, player.position)
-	var target = Facing.facing_vector(facing) * -1 * ATTACK_RANGE + player.position			
-	var diff_to_target = target - position
+	facing = Facing.facing_to(global_position, player.global_position)
+	var target = Facing.facing_vector(facing) * -1 * ATTACK_RANGE + player.global_position			
+	var diff_to_target = target - global_position
 	
 	if attack_cooldown_timer.get_time_left() <= 0 and diff_to_target.length() <= ATTACK_RANGE_TOLERANCE:
 		transition_to_attack_windup()

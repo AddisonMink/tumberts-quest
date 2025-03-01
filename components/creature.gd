@@ -65,7 +65,7 @@ func _on_die() -> void:
 	death_poof.initialize(position)
 	queue_free()
 	
-func find_tumbert() -> Node2D:
+func find_tumbert() -> Creature:
 	var tumberts =  get_tree().get_nodes_in_group("player")
 	return tumberts[0] if tumberts.size() > 0 else null
 		

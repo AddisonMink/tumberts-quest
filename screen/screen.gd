@@ -21,13 +21,15 @@ func coordinate() -> Vector2i:
 func start() -> void:
 	if _need_to_reset:
 		call_deferred("_reset_persistent_npcs")
+		
+func stop() -> void:
+	call_deferred("_clean_up_npcs")
 
 #################################################################
 ## SIGNAL HANDLERS											  ##
 #################################################################
 
 func _on_body_exited(body: Node2D) -> void:
-	call_deferred("_clean_up_npcs")
 	var dir = _direction_vector(body.global_position)
 	screen_exited.emit(_coordinate, dir, _SIZE)
 		

@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
 func _transition_to_idle() -> void:
 	velocity = Vector2.ZERO
 	if _player:
-		_facing = Facing.facing_to(position, _player.position)
+		_facing = Facing.facing_to(global_position, _player.global_position)
 	play_animation_facing("idle", _facing)
 	_state = State.IDLE
 	
@@ -51,7 +51,7 @@ func _update_idle() -> void:
 	var vec = _alignment_vector()
 	if vec.length() < _ALIGN_TOLERANCE and _attack_cooldown_timer.time_left <= 0:		
 		_transition_to_attack_windup()	
-	elif _player and (_player.position - position).length() < _FLEE_DISTANCE:
+	elif _player and (_player.global_position - global_position).length() < _FLEE_DISTANCE:
 		_transition_to_fleeing()
 	elif vec.length() > _ALIGN_TOLERANCE:
 		_transition_to_aligning()
@@ -97,11 +97,11 @@ func _transition_to_fleeing() -> void:
 	
 func _update_fleeing() -> void:
 	var vec = _alignment_vector()
-	var diff = position - _player.position
+	var diff = global_position - _player.global_position
 	if diff.length() > _FLEE_DISTANCE or vec.length() < _ALIGN_TOLERANCE and _attack_cooldown_timer.time_left <= 0:
 		_transition_to_idle()
 	else:
-		_facing = Facing.facing_to(_player.position, position)
+		_facing = Facing.facing_to(_player.global_position, global_position)
 		play_animation_facing("walk", _facing)
 		velocity = diff.normalized() * _ALIGN_SPEED
 		
@@ -111,6 +111,6 @@ func _update_fleeing() -> void:
 func _alignment_vector():
 	if not _player:
 		return Vector2.ZERO
-	var diff = _player.position - position
+	var diff = _player.global_position - global_position
 	return Vector2(diff.x, 0) if abs(diff.x) < abs(diff.y) else Vector2(0, diff.y)
 	

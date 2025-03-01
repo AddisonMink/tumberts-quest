@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=4 uid="uid://qs6l4gjow7qh"]
+[gd_scene load_steps=5 format=4 uid="uid://qs6l4gjow7qh"]
 
 [ext_resource type="PackedScene" uid="uid://clh3fl7h1upyx" path="res://screen/screen.tscn" id="1_uh8w2"]
 [ext_resource type="TileSet" uid="uid://bnlwde40xet8b" path="res://tile_sets/forest_terrain.tres" id="2_4gd57"]
+[ext_resource type="PackedScene" uid="uid://c0yikofxunpoe" path="res://characters/redcap/redcap.tscn" id="3_a2c40"]
+[ext_resource type="PackedScene" uid="uid://bjiew186wwkpu" path="res://characters/scamp/scamp.tscn" id="4_733as"]
 
 [node name="Screen 1,0" instance=ExtResource("1_uh8w2")]
 
@@ -10,3 +12,9 @@ z_index = -2
 scale = Vector2(8, 8)
 tile_map_data = PackedByteArray("AAAAAAEAAQADAAMAAAAAAAIAAQAEAAMAAAAAAAgAAQAEAAMAAAAAAAcAAQAEAAMAAAAAAAYAAQAEAAMAAAAAAAMAAQAEAAMAAAABAAgAAQAEAAMAAAACAAgAAQAEAAMAAAADAAgAAQAEAAMAAAAEAAgAAQAEAAMAAAAFAAgAAQAEAAMAAAAGAAgAAQAEAAMAAAAHAAgAAQAEAAMAAAAIAAgAAQAEAAMAAAAJAAgAAQAEAAMAAAAKAAgAAQAEAAMAAAAKAAEAAQADAAMAAAAKAAIAAQAEAAMAAAAKAAMAAQAEAAMAAAAKAAQAAQAEAAMAAAAKAAUAAQAEAAMAAAAKAAYAAQAEAAMAAAAKAAcAAQAEAAMAAAABAAEAAQADAAMAAAACAAEAAQADAAMAAAADAAEAAQADAAMAAAAEAAEAAQADAAMAAAAFAAEAAQADAAMAAAAGAAEAAQADAAMAAAAHAAEAAQADAAMAAAAIAAEAAQADAAMAAAAJAAEAAQADAAMAAAA=")
 tile_set = ExtResource("2_4gd57")
+
+[node name="Redcap" parent="." index="3" instance=ExtResource("3_a2c40")]
+position = Vector2(1140, 334)
+
+[node name="Scamp" parent="." index="4" instance=ExtResource("4_733as")]
+position = Vector2(897, 896)
