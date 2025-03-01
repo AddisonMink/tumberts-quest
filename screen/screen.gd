@@ -1,7 +1,7 @@
 class_name Screen
 extends Area2D
 
-signal screen_exited(coord: Vector2i, dir: Vector2i, size: Vector2)
+signal screen_exited(coord: Vector2i, dir: Vector2i)
 
 
 const _SIZE: Vector2 = Vector2(1408, 1152)
@@ -31,7 +31,7 @@ func stop() -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	var dir = _direction_vector(body.global_position)
-	screen_exited.emit(_coordinate, dir, _SIZE)
+	screen_exited.emit(_coordinate, dir)
 		
 #################################################################
 ## LOGIC														  ##

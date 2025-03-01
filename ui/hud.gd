@@ -5,5 +5,5 @@ extends NinePatchRect
 func set_hp(current: int) -> void:
 	_hp_meter.current_hp = current
 
-func set_max_hp(max: int) -> void:
-	_hp_meter.max_hp = max
+func set_max_hp(max_hp: int) -> void:
+	_hp_meter.max_hp = max_hp

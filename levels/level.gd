@@ -17,8 +17,14 @@ func _ready() -> void:
 			_screen_dict[screen.coordinate()] = screen
 	
 	_screen_dict[_coord].start()
+	
+	_hud.set_hp(_tumbert.get_current_health())
+	_hud.set_max_hp(_tumbert.get_max_health())
+	
+func _process(_delta: float) -> void:
+	_hud.set_hp(_tumbert.get_current_health())
 		
-func _on_screen_transition(coord: Vector2i, dir: Vector2i, size: Vector2) -> void:
+func _on_screen_transition(coord: Vector2i, dir: Vector2i) -> void:
 	var old_screen = _screen_dict[_coord]
 	old_screen.stop()
 	
