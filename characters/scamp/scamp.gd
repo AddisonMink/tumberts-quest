@@ -3,6 +3,8 @@ extends Creature
 const _BULLET_SCENE = preload("res://characters/scamp/scamp_bullet.tscn")
 
 enum State {
+	ASLEEP,
+	WAKING,
 	IDLE,
 	ALIGNING,
 	ATTACK_WINDUP,
@@ -10,10 +12,12 @@ enum State {
 	FLEEING,
 }
 
+const _WAKE_DISTANCE = 1000
 const _ALIGN_SPEED = 200
 const _ALIGN_TOLERANCE = 10
 const _FLEE_DISTANCE = 400
 
+@onready var _wake_timer: Timer = $WakeTimer
 @onready var _attack_windup_timer: Timer = $AttackWindupTimer
 @onready var _attack_timer: Timer = $AttackTimer
 @onready var _attack_cooldown_timer: Timer = $AttackCooldownTimer
@@ -22,15 +26,29 @@ const _FLEE_DISTANCE = 400
 var _facing: Facing.Facing = Facing.Facing.DOWN
 var _state: State
 
+#################################################################
+## PUBLIC													  ##
+#################################################################
+
+func reset() -> void:
+	super.reset()
+	_transition_to_asleep()
+
+#################################################################
+## READY AND PROCESS											  ##
+#################################################################
+
 func _ready() -> void:
 	super._ready()
-	_transition_to_idle()
+	_transition_to_asleep()
 	
 func _process(_delta: float) -> void:
 	if is_stunned():
 		return
 		
 	match _state:
+		State.ASLEEP: _update_asleep()
+		State.WAKING: _update_waking()
 		State.IDLE: _update_idle()
 		State.ALIGNING: _update_aligning()
 		State.ATTACK_WINDUP: _update_attack_windup()
@@ -40,6 +58,29 @@ func _process(_delta: float) -> void:
 #################################################################
 ## STATE MACHINE												  ##
 #################################################################
+
+func _transition_to_asleep() -> void:
+	_state = State.ASLEEP
+	velocity = Vector2.ZERO
+	_animated_sprite.play("sleep")
+	
+func _update_asleep() -> void:
+	if not _player:
+		return
+		
+	var dist = global_position.distance_to(_player.global_position)
+	if dist <= _WAKE_DISTANCE:
+		_transition_to_waking()
+	
+func _transition_to_waking() -> void:
+	_state = State.WAKING
+	_wake_timer.start()
+	_animated_sprite.play("wake")
+	
+func _update_waking() -> void:
+	if _wake_timer.get_time_left() <= 0:
+		_transition_to_idle()
+
 func _transition_to_idle() -> void:
 	velocity = Vector2.ZERO
 	if _player:

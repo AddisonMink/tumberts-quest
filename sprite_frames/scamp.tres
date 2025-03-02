@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=23 format=3 uid="uid://dw7kytsi0pup2"]
+[gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://dw7kytsi0pup2"]
 
 [ext_resource type="Texture2D" uid="uid://2dt5liqjhsqt" path="res://images/scamp.png" id="1_8wvup"]
 
@@ -37,6 +37,18 @@ region = Rect2(0, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8nw1"]
 atlas = ExtResource("1_8wvup")
 region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h832j"]
+atlas = ExtResource("1_8wvup")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54meg"]
+atlas = ExtResource("1_8wvup")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq2b0"]
+atlas = ExtResource("1_8wvup")
+region = Rect2(32, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hutfg"]
 atlas = ExtResource("1_8wvup")
@@ -158,6 +170,25 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h832j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54meg")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq2b0")
+}],
+"loop": true,
+"name": &"wake",
 "speed": 5.0
 }, {
 "frames": [{
