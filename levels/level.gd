@@ -22,7 +22,8 @@ func _ready() -> void:
 	_hud.set_max_hp(_tumbert.get_max_health())
 	
 func _process(_delta: float) -> void:
-	_hud.set_hp(_tumbert.get_current_health())
+	if _tumbert:
+		_hud.set_hp(_tumbert.get_current_health())
 		
 func _on_screen_transition(coord: Vector2i, dir: Vector2i) -> void:
 	var old_screen = _screen_dict[_coord]

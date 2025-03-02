@@ -1,6 +1,10 @@
 extends Creature
 
+const WAKE_DISTANCE = 1000
+const WAKE_DURATION = 0.25
+
 const WALK_SPEED = 200
+
 const ATTACK_WINDUP_DURATION = 0.5
 const ATTACK_COOLDOWN_DURATION = 0.5
 const ATTACK_RANGE_TOLERANCE = 16
@@ -11,6 +15,8 @@ const ATTACK_BREADTH = 10
 const ATTACK_OFFSET = 5
 
 enum State {
+	ASLEEP,
+	WAKING,
 	IDLE,
 	WALKING,
 	ATTACK_WINDUP,
@@ -23,24 +29,54 @@ enum State {
 
 var state: State = State.IDLE
 var facing: Facing.Facing = Facing.Facing.DOWN
+var wake_timer: Timer = null
 var attack_windup_timer: Timer = null
 var attack_cooldown_timer: Timer = null
 
+func reset() -> void:
+	super.reset()
+	transition_to_asleep()
+
 func _ready() -> void:
 	super._ready()	
+	wake_timer = make_timer(WAKE_DURATION)
 	attack_windup_timer = make_timer(ATTACK_WINDUP_DURATION)
 	attack_cooldown_timer = make_timer(ATTACK_COOLDOWN_DURATION)
 	remove_child(hitbox)
-	transition_to_idle()
+	transition_to_asleep()
 
 func _process(_delta: float) -> void:
 	if(is_stunned()):
 		return		
 	match state:
+		State.ASLEEP: update_asleep()
+		State.WAKING: update_waking()
 		State.IDLE: update_idle()
 		State.WALKING: update_walking()
 		State.ATTACK_WINDUP: update_attack_windup()
 		State.ATTACKING: update_attacking()
+
+func transition_to_asleep():
+	state = State.ASLEEP
+	velocity = Vector2.ZERO
+	_animated_sprite.play("sleep")
+	
+func update_asleep():
+	if not player:
+		return
+		
+	var dist = player.global_position.distance_to(global_position)
+	if dist <= WAKE_DISTANCE:
+		transition_to_waking()
+		
+func transition_to_waking():
+	state = State.WAKING
+	_animated_sprite.play("wake")
+	wake_timer.start()
+	
+func update_waking():
+	if wake_timer.get_time_left() <= 0:
+		transition_to_idle()
 
 func transition_to_idle():
 	state = State.IDLE
@@ -57,6 +93,10 @@ func transition_to_walking():
 	update_walking()
 	
 func update_walking():	
+	if not player:
+		transition_to_asleep()
+		return
+	
 	facing = Facing.facing_to(global_position, player.global_position)
 	var target = Facing.facing_vector(facing) * -1 * ATTACK_RANGE + player.global_position			
 	var diff_to_target = target - global_position
