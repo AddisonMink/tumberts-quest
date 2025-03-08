@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dktdlgqp4fpqx"]
+[gd_scene load_steps=11 format=3 uid="uid://dktdlgqp4fpqx"]
 
 [ext_resource type="Script" path="res://characters/tumbert/tumbert.gd" id="1_6nmmx"]
 [ext_resource type="Shader" path="res://shaders/creature_shader.gdshader" id="2_n60w8"]
@@ -6,6 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://opjjiyma6i25" path="res://sprite_frames/tumbert.tres" id="3_6qu2v"]
 [ext_resource type="Script" path="res://components/health.gd" id="3_34xdt"]
 [ext_resource type="Script" path="res://components/blinker.gd" id="4_mul0i"]
+[ext_resource type="Script" path="res://components/inventory.gd" id="7_7gu06"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p2nht"]
 shader = ExtResource("2_n60w8")
@@ -62,6 +63,5 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="IdleCooldownTimer" type="Timer" parent="IdleCooldownTimer"]
-wait_time = 3.0
-one_shot = true
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("7_7gu06")

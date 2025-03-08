@@ -20,6 +20,10 @@ func _ready() -> void:
 	
 	_hud.set_hp(_tumbert.get_current_health())
 	_hud.set_max_hp(_tumbert.get_max_health())
+	_hud.set_item("bomba", 5)
+	
+	_tumbert.item_change.connect(_on_tumbert_item_change)
+	_tumbert.start()
 	
 func _process(_delta: float) -> void:
 	if _tumbert:
@@ -43,3 +47,6 @@ func _on_screen_transition(coord: Vector2i, dir: Vector2i) -> void:
 	await  _screen_transition_animation_player.animation_finished
 	
 	new_screen.start()
+
+func _on_tumbert_item_change(item: String, quantity: int) -> void:
+	_hud.set_item(item, quantity)

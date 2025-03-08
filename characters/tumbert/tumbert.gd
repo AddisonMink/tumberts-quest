@@ -1,5 +1,7 @@
 extends Creature
 
+signal item_change(item: String, quantity: int)
+
 enum State {
 	IDLE,
 	WALKING,
@@ -13,6 +15,7 @@ const _SWORD_OFFSET_DOWN = Vector2(0, 90) / 8
 
 @onready var _attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var _idle_cooldown_timer: Timer = $IdleCooldownTimer
+@onready var _inventory: Inventory = $Inventory
 
 var _facing: Facing.Facing = Facing.Facing.DOWN
 var _dir: Vector2 = Vector2(0,0)
@@ -24,6 +27,10 @@ func get_current_health() -> int:
 	
 func get_max_health() -> int:
 	return _health.max_health
+	
+func start() -> void:
+	var entry = _inventory.initialize(1, 1, 1)
+	item_change.emit(entry["item"], entry["quantity"])
 
 func _ready() -> void:
 	super._ready()
@@ -32,6 +39,11 @@ func _ready() -> void:
 func _process(_delta: float):
 	if is_stunned():
 		return
+		
+	if Input.is_action_just_pressed("left_trigger"):
+		var entry = _inventory.next_item()
+		item_change.emit(entry["item"], entry["quantity"])
+		
 	match _state:
 		State.IDLE: _update_idle()
 		State.WALKING: _update_walking()
