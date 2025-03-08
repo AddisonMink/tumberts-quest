@@ -17,7 +17,6 @@ var current_hp: int:
 		current_hp = value
 		queue_redraw()
 		
-
 func _draw() -> void:
 	for i in max_hp:
 		var x = (_PIP_WIDTH + _PIP_MARGIN) * i

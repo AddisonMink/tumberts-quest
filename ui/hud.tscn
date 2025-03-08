@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf0we6m8qcrug"]
+[gd_scene load_steps=7 format=3 uid="uid://bf0we6m8qcrug"]
 
 [ext_resource type="Texture2D" uid="uid://v23ewijmh4qc" path="res://images/nineslice.png" id="1_48kje"]
 [ext_resource type="Script" path="res://ui/hud.gd" id="2_o6sta"]
 [ext_resource type="LabelSettings" uid="uid://bv01e81860nca" path="res://ui/hud_label_settings.tres" id="3_fxtc2"]
 [ext_resource type="Script" path="res://ui/hp_meter.gd" id="4_5dvo3"]
 [ext_resource type="Texture2D" uid="uid://bmq1fg3b1lcfa" path="res://images/health-pip.png" id="5_lgkw4"]
+[ext_resource type="SpriteFrames" uid="uid://c68gp6uiiuuv8" path="res://sprite_frames/hud_item.tres" id="6_f6rsn"]
 
 [node name="HUD" type="NinePatchRect"]
 offset_right = 176.0
-offset_bottom = 16.0
+offset_bottom = 22.0
 scale = Vector2(8, 8)
 texture = ExtResource("1_48kje")
 patch_margin_left = 4
@@ -19,18 +20,32 @@ script = ExtResource("2_o6sta")
 
 [node name="HPLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 21.0
-offset_bottom = 12.0
+offset_left = 5.25
+offset_top = 6.625
+offset_right = 21.25
+offset_bottom = 14.625
 text = "HP"
 label_settings = ExtResource("3_fxtc2")
 
 [node name="HPMeter" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 22.0
-offset_top = 3.0
-offset_right = 40.0
-offset_bottom = 12.0
+offset_left = 22.25
+offset_top = 6.375
+offset_right = 40.25
+offset_bottom = 15.375
 script = ExtResource("4_5dvo3")
 pip_texture = ExtResource("5_lgkw4")
+
+[node name="Item" type="AnimatedSprite2D" parent="."]
+position = Vector2(71.5, 10.875)
+sprite_frames = ExtResource("6_f6rsn")
+animation = &"tonic"
+
+[node name="ItemCount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 7.0
+offset_right = 97.0
+offset_bottom = 15.0
+text = "X1"
+label_settings = ExtResource("3_fxtc2")

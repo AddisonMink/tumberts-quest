@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://c68gp6uiiuuv8"]
+
+[ext_resource type="Texture2D" uid="uid://crr67hcq65r4i" path="res://images/hud-item.png" id="1_w6p01"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o58wb"]
+atlas = ExtResource("1_w6p01")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj002"]
+atlas = ExtResource("1_w6p01")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifdbl"]
+atlas = ExtResource("1_w6p01")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01tis"]
+atlas = ExtResource("1_w6p01")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o58wb")
+}],
+"loop": true,
+"name": &"bomba",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj002")
+}],
+"loop": true,
+"name": &"bullet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifdbl")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01tis")
+}],
+"loop": true,
+"name": &"tonic",
+"speed": 5.0
+}]
